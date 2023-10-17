@@ -1,30 +1,18 @@
 import { Link } from "@remix-run/react";
+import logo from "../../public/img/logo.svg";
+import Navbar from "./navbar";
+
 
 function Header() {
+
+
   return (
-    <header className="heading">
+    <header className="header">
       <div className="conteiner split">
-        <div className="logo">
-            
-        </div>
-        <nav className="navBar">
-          <Link to="/" prefetch="render">
-            {" "}
-            Homepage{" "}
-          </Link>
-          <Link to="/us" prefetch="render">
-            {" "}
-            Us{" "}
-          </Link>
-          <Link to="/store" prefetch="render">
-            {" "}
-            Store{" "}
-          </Link>
-          <Link to="/blog" prefetch="render">
-            {" "}
-            Blog{" "}
-          </Link>
-        </nav>
+        <Link to="/">
+          <img className="logo" alt="logo" src={logo} />
+        </Link>
+        <Navbar />        
       </div>
     </header>
   );
