@@ -44,7 +44,7 @@ export function links() {
 export default function app() {
   return (
     <Document>
-      <h1>prueba</h1>
+   {/*    <h1>prueba</h1> */}
       <Outlet>
         <Index />
         </Outlet>
