@@ -2,6 +2,7 @@ import { Link, useLocation } from "@remix-run/react";
 
 function Navbar() {
     const location = useLocation();
+    
   return (
     <nav className="navBar">
           <Link

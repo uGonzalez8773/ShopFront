@@ -5,3 +5,10 @@ export async function getGuitars() {
   );
   return await response.json();
 }
+
+export async function getGuitar(url) {
+  const response = await fetch(
+    `${process.env.API_URL}/guitarras?filters[url]=${url}&populate=image`
+  )
+  return response.json()
+}

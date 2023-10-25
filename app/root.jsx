@@ -1,9 +1,18 @@
-import { Meta, Links, Outlet, Scripts, LiveReload } from "@remix-run/react";
+import {
+  Meta,
+  Links,
+  Outlet,
+  Scripts,
+  LiveReload,
+  useRouteError,
+  isRouteErrorResponse,
+  Link,
+} from "@remix-run/react";
+/* import { useCatch } from "@remix-run/dev"; */
 import styles from "~/styles/index.css";
 import Header from "~/components/header";
 import Index from "~/routes/index";
 import Footer from "~/components/footer";
-
 
 export function meta() {
   return [
@@ -44,10 +53,9 @@ export function links() {
 export default function app() {
   return (
     <Document>
-   {/*    <h1>prueba</h1> */}
       <Outlet>
         <Index />
-        </Outlet>
+      </Outlet>
     </Document>
   );
 }
@@ -68,4 +76,19 @@ function Document({ children }) {
       </body>
     </html>
   );
+}
+
+/** Handling errors **/
+export function ErrorBoundary() {
+  const error = useRouteError();
+  if (isRouteErrorResponse(error)) {
+    return (
+      <Document>
+        <h1 className="error-title">Oops theres no guitars like that</h1>
+        <p className="error">Status: {error.status}</p>
+        <p className="error">{error.data.message}</p>
+        <Link className="error-link" to="/">You may want to visit the homoepage</Link>
+      </Document>
+    );
+  }
 }
