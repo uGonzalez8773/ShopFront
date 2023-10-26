@@ -2,7 +2,7 @@ import { Link } from "@remix-run/react";
 
 function Guitar({ guitar }) {
   const { name, description, price, url, image } = guitar;
-  const dynamicUrl = `/guitars/${url}`;
+  const dynamicUrl = `/guitars/${url}`
 
   return (
     <div className="guitar">

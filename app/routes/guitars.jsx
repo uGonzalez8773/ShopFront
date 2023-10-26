@@ -1,15 +1,13 @@
 import { Outlet } from "@remix-run/react";
-import styles from "~/styles/blog.css"
+import styles from "~/styles/guitars.css"
 
-export function links(){
+export function links() {
   return [{
-    rel: 'stylesheet',
+    rel:'stylesheet',
     href: styles
-  }]
+  }];
 }
-
-function Blog() {
-
+function Store() {
   return (
     <main className="conteiner">
       <Outlet />
@@ -17,4 +15,4 @@ function Blog() {
   );
 }
 
-export default Blog;
+export default Store;

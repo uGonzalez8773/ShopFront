@@ -15,15 +15,15 @@ function Navbar() {
           </Link>
           <Link
             to="/us"
-            className={location.pathname === "/" ? "active" : ""}
+            className={location.pathname === "/us" ? "active" : ""}
             prefetch="render"
           >
             {" "}
             Us{" "}
           </Link>
           <Link
-            to="/store"
-            className={location.pathname === "/" ? "active" : ""}
+            to="/guitars"
+            className={location.pathname === "/guitars" ? "active" : ""}
             prefetch="render"
           >
             {" "}
@@ -31,7 +31,7 @@ function Navbar() {
           </Link>
           <Link
             to="/blog"
-            className={location.pathname === "/" ? "active" : ""}
+            className={location.pathname === "/blog" ? "active" : ""}
             prefetch="render"
           >
             {" "}

@@ -6,9 +6,8 @@ import {
   LiveReload,
   useRouteError,
   isRouteErrorResponse,
-  Link,
+  Link
 } from "@remix-run/react";
-/* import { useCatch } from "@remix-run/dev"; */
 import styles from "~/styles/index.css";
 import Header from "~/components/header";
 import Index from "~/routes/index";
