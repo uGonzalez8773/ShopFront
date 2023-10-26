@@ -84,7 +84,7 @@ export function ErrorBoundary() {
   if (isRouteErrorResponse(error)) {
     return (
       <Document>
-        <h1 className="error-title">Oops theres no guitars like that</h1>
+        <h1 className="error-title">Oops theres nothing like that</h1>
         <p className="error">Status: {error.status}</p>
         <p className="error">{error.data.message}</p>
         <Link className="error-link" to="/">You may want to visit the homoepage</Link>

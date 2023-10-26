@@ -25,8 +25,8 @@ export function meta({data}){
     }
   }
   return [{
-    title: `GuitarLA - ${data.data[0].attributes.name}`,
-    description: `Guitars, description of the guitar ${data.data[0].attributes.name}`
+    title: `GuitarLA - ${data?.data[0]?.attributes?.name}`,
+    description: `Guitars, description of the guitar ${data?.data[0]?.attributes?.name}`
   }]
 }
 
@@ -40,11 +40,11 @@ export function links(){
 
 function Guitar () {
   const guitar = useLoaderData()
-  const {name, description, image, price} = guitar.data[0].attributes.name
+  const {name, description, image, price} = guitar?.data[0]?.attributes?.name
 
   return (
     <main className="conteiner guitar">
-      <img className="image" src={image.data.attributes.url} alt={`guitar ${name}`} />
+      <img className="image" src={image?.data?.attributes?.url} alt={`guitar ${name}`} />
 
       <div className="content">
         <h3>{name}</h3>
