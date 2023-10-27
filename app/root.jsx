@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   Meta,
   Links,
@@ -6,11 +7,10 @@ import {
   LiveReload,
   useRouteError,
   isRouteErrorResponse,
-  Link
+  Link,
 } from "@remix-run/react";
 import styles from "~/styles/index.css";
 import Header from "~/components/header";
-import Index from "~/routes/index";
 import Footer from "~/components/footer";
 
 export function meta() {
@@ -49,12 +49,54 @@ export function links() {
   ];
 }
 
-export default function app() {
+export default function App() {
+  const cartLS = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('cart')) ?? [] : null
+  const [cart, setCart] = useState(cartLS);
+
+  useEffect(() => {
+     localStorage.setItem('cart', JSON.stringify(cart))
+  }, [cart])
+
+
+  const addToCart = (guitar) => {
+    if (cart.some((guitarState) => guitarState.id === guitar.id)) {
+      const updatedCart = cart.map((guitarState) => {
+        if (guitarState.id === guitar.id) {
+          guitarState.amount = guitar.amount;
+        }
+        return guitarState;
+      });
+      setCart(updatedCart);
+    } else {
+      setCart([...cart, guitar]);
+    }
+  };
+
+  const updateAmount = (guitar) => {
+    const updatedCart = cart.map((guitarState) => {
+      if (guitarState.id === guitar.id) {
+        guitarState.amount = guitar.amount;
+      }
+      return guitarState;
+    });
+    setCart(updatedCart);
+  };
+
+  const deleteGuitar = (id) => {
+    const updatedCart = cart.filter((guitarState) => guitarState.id !== id);
+    setCart(updatedCart);
+  };
+
   return (
     <Document>
-      <Outlet>
-        <Index />
-      </Outlet>
+      <Outlet
+        context={{
+          addToCart,
+          cart,
+          updateAmount,
+          deleteGuitar,
+        }}
+      />
     </Document>
   );
 }
@@ -86,7 +128,9 @@ export function ErrorBoundary() {
         <h1 className="error-title">Oops theres nothing like that</h1>
         <p className="error">Status: {error.status}</p>
         <p className="error">{error.data.message}</p>
-        <Link className="error-link" to="/">You may want to visit the homoepage</Link>
+        <Link className="error-link" to="/">
+          You may want to visit the homoepage
+        </Link>
       </Document>
     );
   }
